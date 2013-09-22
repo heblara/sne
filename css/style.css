@@ -1,0 +1,92 @@
+@charset "utf-8";
+/* CSS Document */
+/* Contendor de slides*/
+.lof-slidecontent{
+	position:relative;
+	overflow:hidden;
+	width:150px;
+	height:300px;
+}
+
+.lof-main-outer{
+	position:relative;
+	visibility:hidden;
+	height:100%;
+	width:300px;
+	z-index:3px;
+	overflow:hidden;
+}
+
+/* item navigator */
+ul.lof-navigator{
+	top:5px;
+	padding:0;
+	margin:0;
+	position:absolute;
+	width:150px;
+	left:0px;
+}
+ul.lof-navigator li{
+	cursor:hand; 
+	cursor:pointer;
+	list-style:none;
+	width:150px;
+	padding:0;
+	margin:0;
+	overflow:hidden;
+}
+
+.lof-navigator-outer{
+	position:absolute;
+	right:0;
+	top:0px;
+	z-index:100;
+	height:70px;
+	width:300px;
+	overflow:hidden;
+	color:#000;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:12px;
+}
+
+.lof-navigator li div{
+	/*background:url(../images/news/transparent_bg.png);*/
+	/*color letra news*/
+	color:#242424;
+	height:100%;
+/*	width:369px;*/
+	position:relative;
+	margin-left:4px;
+	padding-left:4px;
+	border-top:1px solid #E1E1E1;
+}
+
+.lof-navigator li.active div{
+	background:url(../images/news/grad-bg.gif);
+	color:#242424;
+}
+/*tamanio de miniatura*/
+.lof-navigator li img{
+	width:128px;
+	margin:4px 4px 0px 0px;
+	float:left;
+	padding:4px;
+	border:#C5C5C5 dotted 1px;
+}
+.lof-navigator li.active img{
+	border:#6C8E5C  dotted 1px;
+	margin:4px 4px 0px 0px;
+}
+.lof-navigator li.active h3{
+	color:#fff;
+	margin:3px;
+	margin-top:4px;
+	/*background-color:#720627;*/
+}
+
+.lof-navigator li h3{
+	color:#fff;
+	margin:3px;
+	margin-top:4px;
+	/*background-color:#720627;*/
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<script language="javascript">
+function obtener_localizacion() {
+  navigator.geolocation.getCurrentPosition(coordenadas);
+}
+function coordenadas(position) {
+  var latitud = position.coords.latitude;
+  var longitud = position.coords.longitude;
+  location.href('https://maps.google.com/maps/place?q='+latitud+','+longitud+');
+}
+</script>
+<a href="javascript:obtener_localizacion();">Mostrar Posición</a>
+</body>
+</html>

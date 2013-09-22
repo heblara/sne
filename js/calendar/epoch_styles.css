@@ -1,0 +1,92 @@
+table.calendar {
+	font-family: Helvetica, Arial, sans-serif;
+	font-size: 0.8em;
+	border-collapse: collapse;
+	background:silver;
+	border: solid #999999 1px;
+	width: 200px;
+	text-align: center;
+	margin-top:-110px;
+	margin-left:150px;
+	color:black;	
+	/*prevent user from selecting text in Mozilla & Safari - check calendar constructor for IE code)*/
+	-moz-user-select: none;
+    /*-khtml-user-select: none;*/
+}
+table.calendar input, table.calendar select {
+	font-size: 10px;
+	color:black;
+}
+table.calendar td {
+	border: 0;
+	font-size: 10px;
+	text-align: center;
+}
+div.mainheading {
+	margin: 2px;
+}
+table.caldayheading {
+	border-collapse: collapse;
+	cursor: pointer;
+	empty-cells: show;
+	margin: 0 6px 0 6px;
+}
+table.caldayheading td {
+	border: solid #CCCCCC 1px;
+	text-align: center;
+	color:#000000;
+	font-weight: bold;
+	width: 22px; /*should match calendar cell's width*/
+}
+table.caldayheading td.wkhead {
+	border-right: double #CCCCCC 3px;
+}
+table.calcells {
+	border-collapse: collapse;
+	cursor: pointer;
+	margin: 0 6px 0 6px;
+}
+table.calcells td {
+	border: solid #CCCCCC 1px;
+	vertical-align: top;
+	text-align: left;
+	font-weight: bold;
+	width: 22px;
+	height: 20px; /*IE doesn't like ems*/
+}
+table.calcells td div {
+	padding: 1px;
+	margin: 0;
+}
+table.calcells td.wkhead {
+	background:url('../../img/background.jpg') silver;
+	/*background-color: #FFFF00; /*modifique amarrillo #00FF00 */
+	text-align: center;
+	border-right: double #CCCCCC 3px;
+	color: #000000;
+}
+table.calcells td.wkday {
+	background: #FFFFFF; /*modifique verde  #DDDDDD*/
+}
+table.calcells td.wkend {
+	background:#DDDDDD; /*modifique rojo #DDDDDD*/
+}
+table.calcells td.curdate {
+
+}
+table.calcells td.cell_selected {
+	background-color: #99CCFF;
+	color: black;
+}
+table.calcells td.notmnth {
+	background-color:#FFFFFF;
+	color: #CCCCCC;
+}
+table.calcells td.notallowed {
+	background-color: white;
+	color: #EEEEEE;
+	font-style: italic;
+}
+table.calcells td.hover {
+	background-color: #999999;
+}
