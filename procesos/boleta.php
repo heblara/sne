@@ -1,5 +1,6 @@
 <?php
 ob_start();
+session_start();
 if (!ini_get('display_errors')) {
     ini_set('display_errors', '1');
 }
@@ -7,6 +8,7 @@ include_once ('../DBManager.class.php'); //Clase de Conexión a las Base de Dato
 include('../sisnej.class.php');
 include("../conf.php");
 include("../paginas/num2letras.php");
+include("../funciones/funciones.php");
 include("../conexion.php");
 require_once("../dompdf-master/dompdf_config.inc.php");
 mysql_query("SET NAMES 'utf8'");
@@ -59,6 +61,7 @@ if($consultarNot->rowCount()>0){
     $observacion.=strtoupper("El usuario ingresÓ ".num2letras($j,true)." ".$vez);
   //}
 }
+$codigo=generarCodigo(10);
 $html="
 <style type=\"text/css\">
   th{
@@ -67,7 +70,7 @@ $html="
 </style>
 <table class='boleta' width=\"100%\" style=\"background-color:#FFF;font-family: 'Trebuchet MS';\">
   <tr>
-    <td><img src=\"../../img/CSJ.png\" /></td>  
+    <td><img src=\"../img/CSJ.png\" /></td>  
     <td colspan='3'><h1 style='padding-bottom:-30px;'>CORTE SUPREMA DE JUSTICIA</h1><br />
     <h2>BOLETA DE NOTIFICACION ELECTR&Oacute;NICA</h2></td>
   </tr>
@@ -87,8 +90,13 @@ $html="
     <th>Observaciones:</th>
     <td style='text-decoration:underline;' colspan='3'>".utf8_decode($observacion)."</td>
   </tr>
+  <tr>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan='3' align='center'>Codigo: ".$codigo."<br />Generada por: ".$_SESSION["usuario"]."</td>
+  </tr>
 </table>";
-
 //echo $consultarBoleta->rowCount();
 /*$obj=new Sisnej;
 $consultarBol=$obj->consultar_boleta($id);
@@ -102,8 +110,9 @@ $consultarBol=$obj->consultar_boleta($id);
 $dompdf->load_html($html);
 $dompdf->set_paper("letter", "landscape");
 $dompdf->render();
-
-$dompdf->stream("dompdf_out.pdf", array("Attachment" => true));
+$dompdf->stream(base64_encode($_GET["id"]).".pdf");
+$boleta=array($codigo,date('Y-m-d H:i:s'),$_SESSION['usuario'],$html,$_GET["id"]);
+$objSisnej->guardar_boleta($boleta);
 ob_end_flush();
 exit(0);
 ?>

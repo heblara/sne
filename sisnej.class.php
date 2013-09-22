@@ -1051,12 +1051,13 @@ class Sisnej {
     function guardar_boleta($campos) {
         $con = new DBManager();
         $dbh = $con->conectar("mysql");
-        $sql = "INSERT INTO boleta VALUES (LAST_INSERT_ID(id+1),:Fecha,:idUsuario,:Contenido,:idNotificacion)";
+        $sql = "INSERT INTO boleta VALUES (:id,:Fecha,:idUsuario,:Contenido,:idNotificacion)";
         $add = $dbh->prepare($sql);
-        $add->bindParam(":Fecha",$campos[0]);
-        $add->bindParam(":idUsuario",$campos[1]);
-        $add->bindParam(":Contenido",$campos[2]);
-        $add->bindParam(":idNotificacion",$campos[3]);
+        $add->bindParam(":id",$campos[0]);
+        $add->bindParam(":Fecha",$campos[1]);
+        $add->bindParam(":idUsuario",$campos[2]);
+        $add->bindParam(":Contenido",$campos[3]);
+        $add->bindParam(":idNotificacion",$campos[4]);
         $add->execute();
         if ($add)
            return true;
