@@ -197,7 +197,7 @@ $total=$con2->rowCount();
       if($_SESSION["autenticado"]=="si"){
       echo "<td align='center' style='$estilo'><a href='?mod=".$mod."&id=".base64_encode($row->CEU)."'><img src='img/edit.png' width='32' title='Editar usuario' /></a>&nbsp;&nbsp;&nbsp;";
           ?>
-        <a onclick="Javascript:var opc=confirm('Realmente desea eliminar?');if(opc){location.href='?mod=elimCEU&id=<?php echo base64_encode($row->CEU); ?>'}"><img src="img/delete.png" width="20" title="Eliminar Usuario" /></a></td>
+        <a onclick="Javascript:var opc=confirm('Realmente desea deactivar al usuario?');if(opc){location.href='?mod=elimCEU&id=<?php echo base64_encode($row->CEU); ?>'}"><img src="img/delete.png" width="20" title="Eliminar Usuario" /></a></td>
           <?php  
       }
     }

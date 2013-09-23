@@ -15,6 +15,7 @@ ob_start();
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Sistema de Notificaci&oacute;n Electr&oacute;nica Judicial - Corte Suprema de Justicia</title>
 <link href="css/main.css" rel="stylesheet" type="text/css" />
+<link href="estilos.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div id="header-wrap">

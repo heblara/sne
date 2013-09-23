@@ -435,6 +435,40 @@ class Sisnej {
         unset($dbh);
         unset($query);
 	}
+    function consultar_departamento($id){
+        $con = new DBManager(); //creamos el objeto $con a partir de la clase DBManager
+        $dbh = $con->conectar("mysql"); //Pasamos como parametro que la base de datos a utilizar para el caso MySQL.
+        $sql = "SELECT * FROM departamentos WHERE IdDepto=".$id;   
+        //echo $sql;
+        $query = $dbh->prepare($sql); // Preparamos la consulta para dejarla lista para su ejecucion
+        $query->execute(); // Ejecutamos la consulta
+        
+        if ($query){
+            return $query; //pasamos el query para utilizarlo luego con fetch
+        }else{
+            return false;
+        }
+            
+        unset($dbh);
+        unset($query);
+    }
+    function consultar_municipio($id,$dep){
+        $con = new DBManager(); //creamos el objeto $con a partir de la clase DBManager
+        $dbh = $con->conectar("mysql"); //Pasamos como parametro que la base de datos a utilizar para el caso MySQL.
+        $sql = "SELECT * FROM municipios WHERE IdMunic=".$id." AND IdDepto=".$dep;   
+        //echo $sql;
+        $query = $dbh->prepare($sql); // Preparamos la consulta para dejarla lista para su ejecucion
+        $query->execute(); // Ejecutamos la consulta
+        
+        if ($query){
+            return $query; //pasamos el query para utilizarlo luego con fetch
+        }else{
+            return false;
+        }
+            
+        unset($dbh);
+        unset($query);
+    }
 	function consultar_correo($id){
 		$con = new DBManager(); //creamos el objeto $con a partir de la clase DBManager
         $dbh = $con->conectar("mysql"); //Pasamos como parametro que la base de datos a utilizar para el caso MySQL.

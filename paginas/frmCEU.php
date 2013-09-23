@@ -90,7 +90,7 @@ function validarCel(cel){
             error("Esa cuenta ya existe, no se pueden duplicar registros");
           }else if(respuesta.mensaje==2){
             ok("Su registro ha sido procesado exitosamente, un correo ha sido enviado a su cuenta personal.");
-            window.open('?mod=imprimirceu&ceu='+document.getElementById("txtEmail").value,'','width=200,height=100');
+            location.href="?mod=imprimirceu&ceu="+document.getElementById("txtEmail").value;
             document.getElementById("CrearCuenta").reset();
           }else if(respuesta.mensaje==3){
             error("Por favor complete los datos requeridos");
