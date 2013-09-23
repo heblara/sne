@@ -10,6 +10,10 @@ function validarEmail(email){
   var regex = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
   return regex.test(email);
 }
+function validarCel(cel){
+  var regex = /^[1-9]{1}[0-9]{3}-[0-9]{4}$/;
+  return regex.test(cel);
+}
   function verificarVacios(form){
     var sAux="";
     var frm = document.getElementById(form);
@@ -44,6 +48,12 @@ function validarEmail(email){
           cemail="* Formato de Correo es incorrecto<br>";
         }
       }
+      if(frm.elements[i].name=="txtMovil"){
+        var cel=validarCel(frm.elements[i].value);
+        if(!cel){
+          ccel="Formato de numero movil invalido<br>";
+        }
+      }
     }
     /*document.getElementById("error").innerHTML="Verifique los siguientes campos: ".sAux;*/
     if(vacio==true){
@@ -54,6 +64,9 @@ function validarEmail(email){
       return false;
     }else if(!email){
       alerta(cemail);
+      return false;
+    }else if(!cel){
+      alerta(ccel);
       return false;
     }else{
       return true;

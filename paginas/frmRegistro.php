@@ -10,6 +10,10 @@ function validarEmail(email){
   var regex = /[\w-\.]{3,}@([\w-]{2,}\.)*([\w-]{2,}\.)[\w-]{2,4}/;
   return regex.test(email);
 }
+function validarCel(cel){
+  var regex = /^[1-9]{1}[0-9]{3}-[0-9]{4}$/;
+  return regex.test(cel);
+}
   function verificarVacios(form){
     var sAux="";
     var frm = document.getElementById(form);
@@ -20,6 +24,7 @@ function validarEmail(email){
     var ter=false;
     var cdui="";
     var cemail="";
+    var ccel="";
     for (i=0;i<frm.elements.length;i++)
     {
       /*sAux += "NOMBRE: " + frm.elements[i].name + " ";
@@ -46,6 +51,12 @@ function validarEmail(email){
           cemail="* Formato de Correo es incorrecto<br>";
         }
       }
+      if(frm.elements[i].name=="txtMovil"){
+        var cel=validarCel(frm.elements[i].value);
+        if(!cel){
+          ccel="Formato de numero movil invalido<br>";
+        }
+      }
       if(frm.elements[i].type=="checkbox"){
         if(frm.elements[i].checked==false){
           ter=true;
@@ -62,6 +73,9 @@ function validarEmail(email){
       return false;
     }else if(!email){
       alerta(cemail);
+      return false;
+    }else if(!cel){
+      alerta(ccel);
       return false;
     }else if(ter){
       alerta("Debe aceptar los terminos y condiciones");
@@ -87,7 +101,7 @@ function validarEmail(email){
           if(respuesta.mensaje==1){
             error("Esa cuenta ya existe, no se pueden duplicar registros");
           }else if(respuesta.mensaje==2){
-            ok("Su registro ha sido procesado exitosamente, un correo ha sido enviado a su cuenta personal.");
+            ok("Su registro ha sido procesado exitosamente, un correo ha sido enviado a su cuenta personal. "+codigo);
             document.getElementById("CrearCuenta").reset();
           }else if(respuesta.mensaje==3){
             error("Por favor complete los datos requeridos");

@@ -31,8 +31,9 @@ if($error==true){
 	    //echo "Esa cuenta ya existe, no se pueden duplicar registros";
 	}else{
 		if($guardarCuenta=$objSisnej->crear_cuenta($cuenta)){
-			$respuesta->mensaje = 2;
-			$usuario = array($txtEmail,$txtEmail,"Abogado","0");
+			$codigo=generarCodigo(6);
+			$respuesta->mensaje = "2";
+			$usuario = array($txtEmail,$codigo,"Abogado","0");
 			$objSisnej->guardar_usuario($usuario);
 			$mensaje="<h1>Validaci&oacute;n de correo electr&oacute;nico</h1>
 			<br><p>

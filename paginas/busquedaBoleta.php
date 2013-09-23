@@ -1,13 +1,16 @@
-<?php 
-ob_start();
-session_start(); ?>
+<style type="text/css">
+	@import url("../estilos.css");
+</style>
 <?php
 include_once ('../DBManager.class.php'); //Clase de Conexión a las Base de Datos
 include('../sisnej.class.php');
 //include("conexion.php");
+ob_start();
 //echo "<a style='text-align:left;' title='Cerrar esta ventana' href='#' onclick=\"document.getElementById('resultado').style.display='none'\"><img src='img/elim.png' width='16' /></a><br>";
+@session_start();
 //$condicion=" AND idNotificador=".$_SESSION["juzgado"]." ";
-$mod="seguimiento";
+$mod="modificarcuenta";
+$condicion="";
 if(isset($_SESSION["privilegio"])){
 	if($_SESSION["privilegio"]=="DIG"){
 		$condicion=" AND Usuario='".$_SESSION["user"]."' ";
@@ -22,18 +25,8 @@ sleep(1);
 $_GET["usuario"];
 $opc=$_GET["opc"];
 $objBuscar=new Sisnej;
-//$condicion=" AND (SELECT COUNT(*) FROM borrados b WHERE b.idNotificacion=n.idNotificacion)  = 0 ";
-if($_GET["opc"]=="2"){
-  $consulta="SELECT * FROM notificacion WHERE Fecha='".$_GET["usuario"]."'".$condicion."ORDER BY Fecha DESC";
-  }
-else if($_GET["opc"]=="1"){ //Busqueda por titular
-  $consulta="SELECT * FROM notificacion WHERE Contenido LIKE'%".$_GET["usuario"]."%'".$condicion."order by Fecha DESC";
-}
-if($_GET["opc"]=="0"){
-	//$consulta="SELECT *,DATE_FORMAT(FechaEnvio,'%d-%m-%Y') as Fecha FROM notificacion AS n WHERE CEU LIKE'%".$_GET["usuario"]."%' OR Contenido LIKE'%".$_GET["usuario"]."%' OR Asunto LIKE'%".$_GET["usuario"]."%' OR FechaEnvio LIKE'%".$_GET["usuario"]."%'".$condicion." ORDER BY FechaEnvio DESC";
-	$consulta="SELECT *,DATE_FORMAT(FechaEnvio,'%d-%m-%Y') as Fecha FROM notificacion AS n WHERE CEU LIKE'%".$_GET["usuario"]."%' OR Contenido LIKE'%".$_GET["usuario"]."%' OR Asunto LIKE'%".$_GET["usuario"]."%' OR FechaEnvio LIKE'%".$_GET["usuario"]."%' ORDER BY FechaEnvio DESC";
+$consulta="SELECT * FROM boleta WHERE idBoleta='".$_GET["usuario"]."'";
 //	echo $consulta;
-}
 //echo $consulta;
 $tamanopag=15;
 $pagina=1;
@@ -51,13 +44,13 @@ $con1=$objBuscar->buscarNoticias($consulta);
 $total=$con1->rowCount();
 $limit=" limit " .$inicio.",".$tamanopag;
 $total_paginas = ceil($total / $tamanopag);
-echo $total." notificaciones encontradas<br>";
+echo $total." boletas coinciden con su busqueda<br>";
 //echo "Se muestran paginas de " . $tamanopag . " registros cada una<br>"; 
 echo "P&aacute;gina " . $pagina . " de " . $total_paginas . "";
 $con2=$objBuscar->buscarNoticias($consulta.$limit);
 $total=$con2->rowCount();
   if ($total > 0) { 
-  echo "<table align='center' width='100%' style='font-family:Verdana, Arial, Helvetica, sans-serif; font-size:11px'>";
+  echo "<table align='center' class='busqueda' width='100%'>";
   echo "<tr>";
   echo "<td colspan='13'>";
 	if ($total_paginas > 1){ 
@@ -77,8 +70,11 @@ $total=$con2->rowCount();
 		}	  
   echo "</td>";
   echo "</tr>";
-  echo "<tr><th class='title' colspan='5' width='20%'>Fecha</th><th class='title' width='40%'>Titular</th>";
-  echo "<th class='title' width='30%'>Destinatario</th><th class='title'>Opcion</th></tr>";
+  echo "<tr><th class='title' colspan='5' width='20%'>CEU</th>
+  <th class='title' width='30%'>Nombre</th>";
+  echo "<th class='title' width='20%'>Carne de Abogado</th>
+  <th class='title' width='20%'>DUI</th>
+  <th class='title'>Opcion</th></tr>";
   $i=0;
   while($row=$con2->fetch(PDO::FETCH_OBJ)){
   	$i++;
@@ -88,20 +84,18 @@ $total=$con2->rowCount();
 	}else{
 		$estilo="background-color:white;color:black;";
 	}
-	  echo "<tr><td colspan='5' style='$estilo'>".$row->Fecha."</td><td style='$estilo'>".$row->Asunto."</td>";
-	  echo "<td align='center' style='$estilo'>".$row->CEU."</td>";
+	  echo "<tr><td colspan='5' style='$estilo'>".$row->CEU."</td><td style='$estilo'>".$row->Nombre."</td>";
+	  echo "<td align='center' style='$estilo'>".$row->Carne."</td>";
+	  echo "<td align='center' style='$estilo'>".$row->DUI."</td>";
 	  if(isset($_SESSION["autenticado"])){
-		  if($_SESSION["autenticado"]=="si"){
-		  echo "<td align='center' style='$estilo'><a href='?mod=".$mod."&id=".base64_encode($row->idNotificacion)."'><img src='img/edit.png' width='32' title='Editar Noticia' /></a>&nbsp;&nbsp;&nbsp;";
-		  //echo "";
-		  //Javascript:
-		  		?>
-		  		<a href="#" onclick="Javascript:confirmar('Realmente desea eliminar?',<?php echo $row->idNotificacion; ?>);">
-				<img src="img/elim.png" width="32" title="Eliminar Noticia" id="eliminar" /></a></td>
-	      <?php  
-		  }
+	  if($_SESSION["autenticado"]=="si"){
+	  echo "<td align='center' style='$estilo'><a href='?mod=".$mod."&id=".base64_encode($row->CEU)."'><img src='img/edit.png' width='32' title='Editar Noticia' /></a>&nbsp;&nbsp;&nbsp;";
+	  		?>
+			<a onclick="Javascript:var opc=confirm('Realmente desea eliminar?');if(opc){location.href='?mod=elimCEU&id=<?php echo base64_encode($row->CEU); ?>'}"><img src="img/delete.png" width="20" title="Eliminar Noticia" /></a></td>
+        <?php  
+	  }
 	  }else{
-		  echo "<td align='center' style='$estilo'><a href='?mod=vernoticia&id=".$row->IdNotificacion."'><img src='img/edit.png' width='32' title='Ver Noticia' /></a></td>";
+		  echo "<td align='center' style='$estilo'><a href='?mod=vernoticia&id=".$row->idCEU."'><img src='img/edit.png' width='16' title='Editar informacion' /></a></td>";
 	  }
 	  /*echo "<td align='center'>";
 	  echo "<a href='#'>Seleccionar</a>";

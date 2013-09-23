@@ -60,7 +60,7 @@ p{
 <form id="frmLogin">
 <input type="text" name="username" class="username" placeholder="Cuenta Electrónica Única" />
 <input type="password" name="password" class="password" placeholder="•••••••••" />
-<div class="forget"><a href="#">¿Olvid&oacute; su contrase&ntilde;a?</a></div>
+<div class="forget"><a href="?mod=recovery">¿Olvid&oacute; su contrase&ntilde;a?</a></div>
 <!--<div class="checkbox">
 <input id="check" name="checkbox" type="checkbox" value="1" />
 <label for="check">Remember?</label>

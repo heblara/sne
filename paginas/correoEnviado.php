@@ -185,7 +185,8 @@ while($ingreso=$consultarIngreso->fetch(PDO::FETCH_OBJ)){
 echo "
 <table width='100%' align='center'>
 <tr>
-	<td align='center'><iframe width='100%' height='300px' src='procesos/boleta.php?id=".base64_decode($_GET["id"])."'></td>
+	<td align='center'>
+	<iframe width='100%' height='300px' src='procesos/boleta.php?id=".base64_decode($_GET["id"])."'></td>
 </tr>
 <tr>
 	<td align='center'><a href='#' onclick='descongelar()'>Cerrar (X)</a></td>

@@ -32,7 +32,7 @@ if($error==true){
 	}else{
 		if($guardarCuenta=$objSisnej->crear_cuenta($cuenta)){
 			$respuesta->mensaje = 2;
-			$usuario = array($txtEmail,$txtEmail,"Abogado","0");
+			$usuario = array($txtEmail,generarCodigo(8),"Abogado","0");
 			$objSisnej->guardar_usuario($usuario);
 			$mensaje="<h1>Validaci&oacute;n de correo electr&oacute;nico</h1>
 			<br><p>

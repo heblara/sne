@@ -67,6 +67,10 @@ $conf['principalAdmin']=array(
 'archivo'=>'principalAdmin.php',
 'layout'=>LAYOUT_ADMINISTRADOR
 );
+$conf['buscarboletas']=array(
+'archivo'=>'searchBoleta.php',
+'layout'=>LAYOUT_ADMINISTRADOR
+);
 $conf['changePwd']=array(
 'archivo'=>'frmCambiarContra.php',
 'layout'=>LAYOUT_INICIO

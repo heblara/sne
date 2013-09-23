@@ -40,7 +40,7 @@ var ca=/^[ ]{1}/;
 var com=ca.test(valor);
 	if((!com=="") || (valor=="")){document.getElementById("resultado").innerHTML="";}else{
 	// Enviar la consulta
-	    objeto.open("GET", "paginas/busquedaCEU.php?opc="+sel+"&usuario=" + valor, true);
+	    objeto.open("GET", "paginas/busquedaBoleta.php?opc="+sel+"&usuario=" + valor, true);
 	    objeto.send(null);
 	}
     
@@ -57,7 +57,7 @@ var ca=/^[ ]{1}/;
 var com=ca.test(valor);
 	if((!com=="") || (valor=="")){document.getElementById("resultado").innerHTML="";}else{
 	// Enviar la consulta
-	    objeto.open("GET", "paginas/busquedaCEU.php?opc="+sel+"&usuario=" + valor + "&pagina="+pag, true);
+	    objeto.open("GET", "paginas/busquedaBoleta.php?opc="+sel+"&usuario=" + valor + "&pagina="+pag, true);
 	    objeto.send(null);
 	}
     
@@ -102,7 +102,7 @@ function seleccionar(){
 <!--<div id="cargarCaja"></div>-->
 <div id="fecha" style='display:;'>
 Texto a buscar:&nbsp;&nbsp;&nbsp;
-<input type='search' id='txtDato' name='txtDato' onkeyup='leerDatos(this.value,0);' size="100" placeholder="Digite el texto a buscar (Nombre, Número de carnet, CEU)" />
+<input type='search' id='txtDato' name='txtDato' onkeyup='leerDatos(this.value,0);' size="100" placeholder="Digite el codigo de la boleta a buscar" />
 <!--<input id='txtFecha' name='txtFecha' readonly />
 <input type='button' value='Enviar' onClick="leerDatos(document.buscar.txtFecha.value,document.buscar.lstTipo.value);">-->
 </div>
@@ -133,7 +133,7 @@ $condicion="";
 }*/ 
 $opc="";
 $objBuscar=new Sisnej;
-  $consulta="SELECT * FROM ceu ORDER BY CEU ASC";
+  $consulta="SELECT * FROM boleta";
   //echo $consulta;
 //echo $consulta;
 $tamanopag=10;
@@ -170,17 +170,14 @@ $total=$con2->rowCount();
            //si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
            ?>
                      &nbsp;
-            <a href="?mod=buscarceu&pagina=<?php echo $i ?>"><?php echo $i; ?></a>
+            <a href="?mod=buscarboletas&pagina=<?php echo $i ?>"><?php echo $i; ?></a>
                      <?php
          }
       } 
     }
     echo "</td></tr>"; 
-  echo "<tr><th class='title' colspan='5' width='20%'>CEU</th>
-  <th class='title' width='30%'>Nombre</th>";
-  echo "<th class='title' width='20%'>Carne de Abogado</th>
-  <th class='title' width='20%'>DUI</th>
-  <th class='title'>Opcion</th></tr>";
+  echo "<tr><th class='title' colspan='5' width='33.333%'>Codigo</th>
+  <th class='title' width='33.333%'>Fecha</th>";
   $i=0;
   while($row=$con2->fetch(PDO::FETCH_OBJ)){
     $i++;
@@ -190,14 +187,12 @@ $total=$con2->rowCount();
   }else{
     $estilo="background-color:white;color:black;";
   }
-    echo "<tr><td colspan='5' style='$estilo'>".$row->CEU."</td><td style='$estilo'>".$row->Nombre."</td>";
-    echo "<td align='center' style='$estilo'>".$row->Carne."</td>";
-    echo "<td align='center' style='$estilo'>".$row->DUI."</td>";
+    echo "<tr><td colspan='5' style='$estilo'>".$row->idBoleta."</td><td style='$estilo'>".$row->Fecha."</td>";
     if(isset($_SESSION["autenticado"])){
       if($_SESSION["autenticado"]=="si"){
-      echo "<td align='center' style='$estilo'><a href='?mod=".$mod."&id=".base64_encode($row->CEU)."'><img src='img/edit.png' width='32' title='Editar usuario' /></a>&nbsp;&nbsp;&nbsp;";
+      //echo "<td align='center' style='$estilo'><a href='?mod=".$mod."&id=".base64_encode($row->CEU)."'><img src='img/edit.png' width='32' title='Ver boleta' /></a>&nbsp;&nbsp;&nbsp;";
           ?>
-        <a onclick="Javascript:var opc=confirm('Realmente desea eliminar?');if(opc){location.href='?mod=elimCEU&id=<?php echo base64_encode($row->CEU); ?>'}"><img src="img/delete.png" width="20" title="Eliminar Usuario" /></a></td>
+          </td>
           <?php  
       }
     }
@@ -218,7 +213,7 @@ $total=$con2->rowCount();
            //si el índice no corresponde con la página mostrada actualmente, coloco el enlace para ir a esa página 
            ?>
                      &nbsp;
-            <a href="?mod=buscarceu&pagina=<?php echo $i ?>"><?php echo $i; ?></a>
+            <a href="?mod=buscarboletas&pagina=<?php echo $i ?>"><?php echo $i; ?></a>
                      <?php
          }
       } 

@@ -12,6 +12,10 @@
 		<td><a href="?mod=buscarnotificaciones"><img src='img/search.png' width='78' title='Seguimiento de notificaciones' /></a></td>
 		<td><a href="?mod=buscarnotificaciones"><span class='titulo'>BUSQUEDA DE NOTIFICACIONES</a></span></td>
 	</tr>
+	<tr align='left'>
+		<td><a href="?mod=buscarboletas"><img src='img/reports.png' width='78' title='Buscar boletas' /></a></td>
+		<td><a href="?mod=buscarboletas"><span class='titulo'>BUSQUEDA DE BOLETAS</a></span></td>
+	</tr>
 </table>
 <!--<a href='?mod=addUser' title='Agregar un nuevo usuario al sistema'><img src="img/addUser.png" /></a>
 <a href='?mod=addUser'><img src="img/adminCeu.png" /></a>-->
