@@ -158,4 +158,8 @@ $conf['infouser']=array(
 'archivo'=>'datauser.php',
 'layout'=>LAYOUT_ABOGADO
 );
+$conf['imprimirceu']=array(
+'archivo'=>'imprimiCEU.php',
+'layout'=>LAYOUT_ADMINCEU
+);
 ?>
