@@ -2,7 +2,7 @@
 date_default_timezone_set('America/Chicago'); 
 session_start();
 include("seguridad.php");
-include("funciones/funciones.php");
+require_once("funciones/funciones.php");
 ob_start();
 ?>
 <!DOCTYPE HTML>

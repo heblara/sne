@@ -14,7 +14,8 @@
 			$idnot=$funcionarios[$i];
 			$conNotificado=$objSisnej->consultar_notificado_especifico($idnot);
 			$resNotificado=$conNotificado->fetch(PDO::FETCH_OBJ);
-			$mensaje="<img src='img/CSJ.png' width='100px' /><p>Ha recibido una nueva Notificacion en su Cuenta Electrónica Única, es necesario que ingrese a su cuenta para que pueda ver el contenido.</a>";
+			$mensaje="<p>Ha recibido una nueva Notificacion en su Cuenta Electrónica Única sobre ".$txtAsunto." del ".$njuzgado.", es necesario que ingrese a su cuenta para que pueda ver el contenido.<br><a href='sne.csj.gob.sv'>Ingresar al sistema</a></p>";
+
 			$conLastId=$objSisnej->obtener_id();
 			$resLastId=$conLastId->fetch(PDO::FETCH_OBJ);
 			//echo $resLastId->ProximoId;
@@ -26,19 +27,20 @@
 				$resCorreo=$consultarCorreo->fetch(PDO::FETCH_OBJ);
 				if($consultarCorreo->rowCount()>0){
 					//function Enviar_Email($Correo_Envio, $Nombre_Envio, $Mensaje_Envio, $Firma_Envio, $Correo_Envia, $Asunto_Mensaje,$Imagen) 
-					if(Enviar_Email($resNotificado->CEU,$resNotificado->Nombre,$mensaje,"Corte Suprema de Justicia, Sistema de Notificacion Electrónica","no-reply@csj.gob.sv","Notificando resolucion a las ".date("H:i:s")." del dia".date("d-m-Y"),"")){
+					if(Enviar_Email($resNotificado->CEU,$resNotificado->Nombre,$mensaje,"Corte Suprema de Justicia, Sistema de Notificacion Electronica","",$txtAsunto,"")){
 						$error="no";
 						$a++;
+					}else{
+						$error="si";
+						$b++;
 					}
 				}else{
-					$error="si";
-					$b++;
 				}
 			}
 		}
 	if($error=="no"){
-		echo "<center>El correo electr&oacute;nico fue enviado al destinatario.</center>";
+		echo "<center>La notificación ha sido enviada al usuario.</center>";
 	}else{
-		echo "<center>Surgi&oacute; un error al enviar el correo.</center>	";
+		echo "<center>Surgi&oacute; un error al enviar la notificación.</center>";
 	}
 ?>

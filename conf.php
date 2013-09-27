@@ -1,5 +1,5 @@
 <?php
-define('MODULO_DEFECTO','login');
+define('MODULO_DEFECTO','home');
 define('LAYOUT_DEFECTO','inicio.php');//Administrador
 define('LAYOUT_LOGIN','login.php');//Administrador
 define('LAYOUT_ADMINISTRADOR','administrador.php');

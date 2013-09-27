@@ -90,6 +90,7 @@ function validarCel(cel){
             error("Esa cuenta ya existe, no se pueden duplicar registros");
           }else if(respuesta.mensaje==2){
             ok("Su registro ha sido procesado exitosamente, un correo ha sido enviado a su cuenta personal.");
+            sleep(1);
             location.href="?mod=imprimirceu&ceu="+document.getElementById("txtEmail").value;
             document.getElementById("CrearCuenta").reset();
           }else if(respuesta.mensaje==3){
@@ -150,7 +151,7 @@ function validarCel(cel){
   </tr>
   <tr>
     <th align="right">Número de acuerdo de autorización:</th>
-    <td><input type="number" name="txtAcuerdo" id="txtAcuerdo" min="0" maxchar="150" title="Numero de acuerdo" required /></td>
+    <td><input type="text" name="txtAcuerdo" id="txtAcuerdo" min="0" maxchar="150" title="Numero de acuerdo" required /></td>
   </tr>
   <tr>
     <th align="right">Fecha de acuerdo:</th>

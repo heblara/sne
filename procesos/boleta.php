@@ -11,13 +11,14 @@ include("../paginas/num2letras.php");
 include("../funciones/funciones.php");
 include("../conexion.php");
 require_once("../dompdf-master/dompdf_config.inc.php");
-mysql_query("SET NAMES 'utf8'");
 $dompdf = new DOMPDF();
+mysql_query("SET NAMES 'utf8'");
 ?>
 <?php 
 $objSisnej=new Sisnej;
-$id=$_GET["id"];
+$id=base64_decode($_GET["id"]);
 $njuzgado="";
+if($id!=""){
 //echo $id;
 $consultarNot=$objSisnej->consultar_notificacion($id);
 $resNot=$consultarNot->fetch(PDO::FETCH_OBJ);
@@ -110,9 +111,10 @@ $consultarBol=$obj->consultar_boleta($id);
 $dompdf->load_html($html);
 $dompdf->set_paper("letter", "landscape");
 $dompdf->render();
-$dompdf->stream(base64_encode($_GET["id"]).".pdf");
+$dompdf->stream($codigo.".pdf", array("Attachment" => true));
 $boleta=array($codigo,date('Y-m-d H:i:s'),$_SESSION['usuario'],$html,$_GET["id"]);
 $objSisnej->guardar_boleta($boleta);
 ob_end_flush();
 exit(0);
+}
 ?>

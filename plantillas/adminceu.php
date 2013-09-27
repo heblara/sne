@@ -1,5 +1,5 @@
 <?php
-include("funciones/funciones.php");
+require_once("funciones/funciones.php");
 require("recortar.php");
 date_default_timezone_set('America/Chicago'); 
 session_start();

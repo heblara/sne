@@ -216,13 +216,34 @@ $(document).ready(function(){
    </script>
     </tr>
     <tr><th align="right">Municipio:</th><td>
-    <div id="">
+    <?php 
+    $q="SELECT IdMunic, DESCRIPCIO FROM municipios WHERE IdDepto='".$cuenta->IdDepartamento."'";
+    //echo $q;
+    $consulta=mysql_query($q) or die(mysql_error());
+  //desconectar();
+  
+  // Comienzo a imprimir el select
+  echo "<select name='estados' id='estados' title='Municipio' onChange='cargaContenido(this.id)'>";
+  echo "<option value='0'>Elige</option>";
+  while($registro=mysql_fetch_row($consulta))
+  {
+    // Convierto los caracteres conflictivos a sus entidades HTML correspondientes para su correcta visualizacion
+    //$registro[1]=htmlentities($registro[1]);
+    $registro[1]=utf8_encode($registro[1]);
+    // Imprimo las opciones del select
+  ?> 
+    <option value='<?php echo $registro[0] ?>' <?php if($registro[0]==$cuenta->IdMunicipio){ echo "selected"; } ?>><?php echo $registro[1] ?></option>
+  <?php
+  }     
+  echo "</select>";
+    ?>
+    <!--<div id="">
         <div id="">
             <select readonly="readonly" name="estados" id="estados">
                 <option value="0">Selecciona opci&oacute;n...</option>
             </select>
         </div>
-    </div>
+    </div>-->
     <!--<select name='lstDepto' id="lstDepto">
     <?php 
 	/*$objSisnej=new Sisnej;

@@ -35,12 +35,8 @@ if($error==true){
 			$respuesta->mensaje = "2";
 			$usuario = array($txtEmail,$codigo,"Abogado","0");
 			$objSisnej->guardar_usuario($usuario);
-			$mensaje="<h1>Validaci&oacute;n de correo electr&oacute;nico</h1>
-			<br><p>
-			Su registro de ha procesado exitosamente, para hacer valida estos datos, debe presentarse personalmente a las Oficinas Administrativas y Jur&iacute;dicas de la Corte Suprema de Justicia.
-			</p>
-			";
-			//Enviar_Email($txtEmail,$txtNombre,$mensaje,"Notificación Electrónica Judicial Corte Suprema de Justicia","","Validación de correo electronico","");
+			$mensaje="Su registro se ha procesado exitosamente, para hacer valida estos datos, debe presentarse personalmente a las Oficinas Administrativas y Jur&iacute;dicas de la Corte Suprema de Justicia.";
+			Enviar_Email($txtEmail,$txtNombre,$mensaje,"Notificacion Electronica Judicial Corte Suprema de Justicia","","Validacion de correo electronico","");
 			/**/
 			//echo "<br><b>Se ha creado la cuenta, un correo ha sido enviado a la cuenta personal del usuario a espera de validar dicha cuenta.</b><br>";
 		}

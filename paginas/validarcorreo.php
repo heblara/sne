@@ -7,9 +7,7 @@ if($user=="" || $user==null || trim($user)==""){
     $consultarCEU=$objUser->consultar_ceu($user);
     if($consultarCEU->rowCount()==1){
         if($validar=$objUser->ValidarCuenta($user)){
-            echo "Su cuenta ha sido validada con exito";
-            sleep(5);
-            header("Location:?mod=login");
+            echo "Su cuenta ha sido validada con exito<br>Para ingresar a su cuenta haga <a href='?mod=login'>clic aqui</a>";
         }
     }
 }

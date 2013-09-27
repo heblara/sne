@@ -59,18 +59,18 @@ var com=ca.test(valor);
 }
 </script>
 <script type="text/javascript" language="javascript">
-function congelar(){
+/*function congelar(){
   $(document).ready(function() { 
   $.blockUI({ 
 	  css:{width:'100%',left:'0%',border:'none',cursor:'default',color:'black',backgroundColor:'none'},
 	  message: $('#Formulario'),
-	  /*overlayCSS:{opacity:0.5}*/
    }); 
   });//fin de jquery
-}
+}*/
+/*
 function descongelar(){
   setTimeout($.unblockUI, 1);
-}
+}*/
 </script>
 <script type='text/javascript'>
 	$(document).keyup(function(e) {
@@ -121,7 +121,7 @@ if(isset($_GET["id"])){
 				if($tiempo>86400){
 			?>
 
-					<a href='?mod=correoEnviado&id=<?php echo base64_encode($resNot->idNotificacion) ?>'><img width='24px' src='img/full-time.png' /></a>
+					<a target="_blank" href='procesos/boleta.php?id=<?php echo base64_encode($resNot->idNotificacion) ?>'><img width='24px' src='img/full-time.png' /></a>
 			<?php 
 				} 
 			?>

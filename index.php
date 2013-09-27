@@ -2,6 +2,7 @@
 if (!ini_get('display_errors')) {
     ini_set('display_errors', '1');
 }
+require("phpmailer/class.phpmailer.php");
 include_once ('DBManager.class.php'); //Clase de Conexión a las Base de Datos
 include('sisnej.class.php');
 include("conf.php");
