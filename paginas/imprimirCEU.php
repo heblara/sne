@@ -64,7 +64,7 @@ if(isset($_GET["ceu"])){
 	$municipio=$munic->Descripcio;
 	$html="<table width='100%' id='datauser'>
 		<caption><h1>DATOS DE REGISTRO</h1><br />
-		Verifique que los datos estén correctos y firme.
+		Verifique que los datos estén correctos, luego firme y selle.<br /><br />
 		</caption>
 		<tr>
 			<th width='35%'>Nombre:</th>
@@ -115,11 +115,13 @@ if(isset($_GET["ceu"])){
 			<td>$municipio</td>
 		</tr>
 		<tr>
-			<td height='25px' colspan='2' valign='middle' align='center'>SAN SALVADOR, ".strtoupper(num2letras(date("d")))." DE ".strtoupper(num2month(date("m")))." DE ".date("Y")."</td>
-			<td></td>
+			<td height='25px' colspan='2' valign='middle' align='center'>SAN SALVADOR, ".strtoupper(num2letras(date("d")))." DE ".strtoupper(num2month(date("m")))." DE ".strtoupper(num2letras(date("Y")))."
+			<br/><br/><br /><br />
+			F: ______________________________________<br/>
+			".$datos->Nombre."<br/>DUI: ".$datos->DUI."</td>
 		</tr>
 	</table>";
-	echo $html;
+	echo ($html);
 	/*require_once("dompdf-master/dompdf_config.inc.php");
 	$dompdf = new DOMPDF();
 	$dompdf->load_html($html);

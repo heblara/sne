@@ -137,7 +137,7 @@ class Sisnej {
     function ValidarCuenta($ceu) {
         $con = new DBManager(); //creamos el objeto $con a partir de la clase DBManager
         $dbh = $con->conectar("mysql"); //Pasamos como parametro que la base de datos a utilizar para el caso MySQL.
-        $sql = "UPDATE usuario SET Estado=1 where usuario=:ceu";
+        $sql = "UPDATE ceu SET Estado=1 WHERE CEU=:ceu";
         $query = $dbh->prepare($sql); // Preparamos la consulta para dejarla lista para su ejecucion
         $query->bindParam(":ceu",$ceu);
         $query->execute(); // Ejecutamos la consulta
@@ -385,6 +385,20 @@ class Sisnej {
         $add->bindParam(":Email",$campos[10]);
         $add->bindParam(":Movil",$campos[11]);
         $add->bindParam(":Estado",$campos[12]);
+        $add->execute();
+        if ($add)
+           return true;
+        else
+           return false;
+        unset($dbh);
+        unset($add);
+    }
+    function actualizar_estado_cuenta($estado) {
+        $con = new DBManager();
+        $dbh = $con->conectar("mysql");
+        $sql = "UPDATE ceu SET Estado=:Estado WHERE CEU=:Email";
+        $add = $dbh->prepare($sql);
+        $add->bindParam(":Estado",$estado);
         $add->execute();
         if ($add)
            return true;

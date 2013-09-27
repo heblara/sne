@@ -3,6 +3,7 @@ define('MODULO_DEFECTO','home');
 define('LAYOUT_DEFECTO','inicio.php');//Administrador
 define('LAYOUT_LOGIN','login.php');//Administrador
 define('LAYOUT_ADMINISTRADOR','administrador.php');
+define('LAYOUT_IMPRIMIR','mailer.php');
 define('LAYOUT_ADMINCEU','adminceu.php');
 define('LAYOUT_ABOGADO','abogado.php');
 define('LAYOUT_NOTIFICADOR','notificador.php');
@@ -160,6 +161,6 @@ $conf['infouser']=array(
 );
 $conf['imprimirceu']=array(
 'archivo'=>'imprimirCEU.php',
-'layout'=>LAYOUT_ADMINCEU
+'layout'=>LAYOUT_IMPRIMIR
 );
 ?>

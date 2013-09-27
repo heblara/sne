@@ -266,9 +266,9 @@ $(document).ready(function(){
   </tr>
   <tr>
     <th align="right">Estado:</th>
-    <td><select id="lstEstado">
-      <option value="1" <?php if($cuenta->Estado){} ?>>Activo</option>
-      <option value="2">Inactivo</option>
+    <td><select id="lstEstado" name="lstEstado">
+      <option value="1" <?php if($cuenta->Estado==1){ echo "selected"; } ?>>Activo</option>
+      <option value="2" <?php if($cuenta->Estado==0){ echo "selected"; } ?>>Inactivo</option>
     </select></td>
   </tr>
   <tr>

@@ -91,8 +91,8 @@ function validarCel(cel){
           }else if(respuesta.mensaje==2){
             ok("Su registro ha sido procesado exitosamente, un correo ha sido enviado a su cuenta personal.");
             sleep(1);
-            location.href="?mod=imprimirceu&ceu="+document.getElementById("txtEmail").value;
             document.getElementById("CrearCuenta").reset();
+            location.href="?mod=imprimirceu&ceu="+document.getElementById("txtEmail").value;
           }else if(respuesta.mensaje==3){
             error("Por favor complete los datos requeridos");
           }else if(respuesta.mensaje==5){
