@@ -32,8 +32,8 @@ if($error==true){
 	}else{
 		if($guardarCuenta=$objSisnej->crear_cuenta($cuenta)){
 			$respuesta->mensaje = 2;
-			$usuario = array($txtEmail,generarCodigo(8),"Abogado","0");
-			$objSisnej->guardar_usuario($usuario);
+			/*$usuario = array($txtEmail,generarCodigo(8),"Abogado","0");
+			$objSisnej->guardar_usuario($usuario);*/
 			$mensaje="Se ha creado su Cuenta Electrónica Única, para dar por válida esta cuenta ingrese al link siguiente. <a href='sne.csj.gob.sv/?mod=validarcuenta&ceu=".base64_encode($txtEmail)."'>Abrir vinculo</a>";
 			//$mensaje="
 			;

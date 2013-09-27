@@ -1,11 +1,11 @@
 <?php
-if($link=mysql_connect("localhost", "root", "admincsj")){
+if($link=mysql_connect("localhost", "root", "")){
 	mysql_select_db("sisnej");
 }else{
 	echo "No se pudo establecer la conexion";
 }
 function conectar(){
-	if($link=mysql_connect("localhost", "root", "admincsj")){
+	if($link=mysql_connect("localhost", "root", "")){
 		mysql_select_db("sisnej");
 	}else{
 		echo "No se pudo establecer la conexion";

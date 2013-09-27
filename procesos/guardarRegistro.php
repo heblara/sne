@@ -16,6 +16,7 @@ $cuenta[8]=$paises;
 $cuenta[9]=$estados;
 $cuenta[10]=$txtEmail;
 $cuenta[11]=$txtMovil;
+$cuenta[12]=0;
 $error=false;
 for ($i=0; $i < count($cuenta); $i++) { 
 	if($cuenta[$i]=="" || $cuenta[$i]==false){
@@ -33,8 +34,8 @@ if($error==true){
 		if($guardarCuenta=$objSisnej->crear_cuenta($cuenta)){
 			$codigo=generarCodigo(6);
 			$respuesta->mensaje = "2";
-			$usuario = array($txtEmail,$codigo,"Abogado","0");
-			$objSisnej->guardar_usuario($usuario);
+			/*$usuario = array($txtEmail,$codigo,"Abogado","0");
+			$objSisnej->guardar_usuario($usuario);*/
 			$mensaje="Su registro se ha procesado exitosamente, para hacer valida estos datos, debe presentarse personalmente a las Oficinas Administrativas y Jur&iacute;dicas de la Corte Suprema de Justicia.";
 			Enviar_Email($txtEmail,$txtNombre,$mensaje,"Notificacion Electronica Judicial Corte Suprema de Justicia","","Validacion de correo electronico","");
 			/**/

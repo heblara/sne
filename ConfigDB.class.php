@@ -8,7 +8,7 @@ class ConfigDB{
         	$this->DB_MySQL = "sisnej";
         	$this->Server_MySQL = "localhost";
         	$this->User_MySQL = "root";
-        	$this->Password_MySQL= "admincsj";
+        	$this->Password_MySQL= "";
         }
 }
 

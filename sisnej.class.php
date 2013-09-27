@@ -345,7 +345,7 @@ class Sisnej {
 	function crear_cuenta($campos) {
         $con = new DBManager();
         $dbh = $con->conectar("mysql");
-        $sql = "INSERT INTO ceu VALUES ('',:Email,:Nombre,:Carnet,:FechaExp,:Acuerdo,:FechaAcuerdo,:DUI,:NombreDUI,:Direccion,:Depto,:Munic,:Email,:Movil)";
+        $sql = "INSERT INTO ceu VALUES ('',:Email,:Nombre,:Carnet,:FechaExp,:Acuerdo,:FechaAcuerdo,:DUI,:NombreDUI,:Direccion,:Depto,:Munic,:Email,:Movil,0)";
         $add = $dbh->prepare($sql);
          $add->bindParam(":Nombre",$campos[0]);
 		$add->bindParam(":Carnet",$campos[1]);
@@ -370,7 +370,7 @@ class Sisnej {
     function actualizar_cuenta($campos) {
         $con = new DBManager();
         $dbh = $con->conectar("mysql");
-        $sql = "UPDATE ceu SET Nombre=:Nombre,Carne=:Carnet,FechaExpedicion=:FechaExp,NoAcuerdo=:Acuerdo,FechaAcuerdo=:FechaAcuerdo,DUI=:DUI,NombreDUI=:NombreDUI,Direccion=:Direccion,IdDepartamento=:Depto,IdMunicipio=:Munic,Email=:Email,Movil=:Movil WHERE CEU=:Email";
+        $sql = "UPDATE ceu SET Nombre=:Nombre,Carne=:Carnet,FechaExpedicion=:FechaExp,NoAcuerdo=:Acuerdo,FechaAcuerdo=:FechaAcuerdo,DUI=:DUI,NombreDUI=:NombreDUI,Direccion=:Direccion,IdDepartamento=:Depto,IdMunicipio=:Munic,Email=:Email,Movil=:Movil,Estado=:Estado WHERE CEU=:Email";
         $add = $dbh->prepare($sql);
          $add->bindParam(":Nombre",$campos[0]);
         $add->bindParam(":Carnet",$campos[1]);
@@ -384,6 +384,7 @@ class Sisnej {
         $add->bindParam(":Depto",$campos[8]);
         $add->bindParam(":Email",$campos[10]);
         $add->bindParam(":Movil",$campos[11]);
+        $add->bindParam(":Estado",$campos[12]);
         $add->execute();
         if ($add)
            return true;

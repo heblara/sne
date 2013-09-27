@@ -265,6 +265,13 @@ $(document).ready(function(){
     <td><input type="text" name="txtMovil" id="txtMovil" maxchar="10" value="<?php echo $cuenta->Movil ?>" /></td>
   </tr>
   <tr>
+    <th align="right">Estado:</th>
+    <td><select id="lstEstado">
+      <option value="1" <?php if($cuenta->Estado){} ?>>Activo</option>
+      <option value="2">Inactivo</option>
+    </select></td>
+  </tr>
+  <tr>
     <td colspan="2" align="center"><input type="submit" name="cmdEnviar" id="cmdEnviar" value="Guardar cambios" /></td>
   </tr>
 </table>

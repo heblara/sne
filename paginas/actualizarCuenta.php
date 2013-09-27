@@ -14,6 +14,7 @@ $cuenta[8]=$paises;
 $cuenta[9]=$estados;
 $cuenta[10]=$txtEmail;
 $cuenta[11]=$txtMovil;
+$cuenta[12]=$lstEstado;
 $consultarCEU=$objSisnej->consultar_ceu($txtEmail);
 if($consultarCEU->rowCount()==1){
 	if($guardarCuenta=$objSisnej->actualizar_cuenta($cuenta)){

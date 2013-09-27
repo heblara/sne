@@ -2,6 +2,7 @@
 date_default_timezone_set('America/Chicago'); 
 ob_start();
 session_start();
+include("funciones/funciones.php");
 ?>
 <!DOCTYPE HTML>
 <html xmlns="http://www.w3.org/1999/xhtml">
